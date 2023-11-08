@@ -85,4 +85,70 @@ FROM <table>
 ```
 <br>
 
-8. 
+8. Using if to query enums:
+```
+select avg(if(actions='confirmed',1,0)) as confirmation
+from <table>
+-- Finds average confirmed actions in the table
+```
+<br>
+
+9. Calculate price per unit:
+Example: [Average Selling Price](https://github.com/abhinavpannala/SQL-Practice/tree/main/1390-average-selling-price)
+```
+-- avg() can only be used to perform calculations on field level.
+select sum(s.price*p.unit)/sum(p.unit)
+from <table> as s 
+join <table> as p
+```
+<br>
+
+10. Date Formats:
+Use date_format function to convert a date to as string, which matches given format_string
+    **Year:**
+    YYYY or yyyy: Four-digit year (e.g., 2023).
+    YY or yy: Last two digits of the year (e.g., 23 for 2023).
+    **Month:**
+    MM or mm: Two-digit month (01 for January, 12 for December).
+    Month or month: Full month name (e.g., January, February).
+    **Day:**
+    DD or dd: Two-digit day of the month (01 to 31).
+    D or d: Day of the week (1 for Sunday, 7 for Saturday).
+    **Hour:**
+    HH: Two-digit hour in 24-hour format (00 to 23).
+    hh: Two-digit hour in 12-hour format (01 to 12).
+    **Minutes and Seconds:**
+    MI or mi: Two-digit minutes (00 to 59).
+    SS or ss: Two-digit seconds (00 to 59).
+    **Milliseconds:**
+    MS or ms: Milliseconds (000 to 999).
+    **Timezone:**
+    TZD or tzd: Timezone abbreviation (e.g., PST, GMT).
+    TZO or tzo: Timezone offset in hours and minutes (e.g., +05:30).
+    **Miscellaneous:**
+    DOW or dow: Abbreviated day of the week (e.g., Sun, Mon).
+    DOY or doy: Day of the year (001 to 366).
+    W or w: Week of the year (1 to 52).
+```
+SELECT DATE_FORMAT(<date>, '%Y-%m-%d %H:%i:%s') AS formatted_date
+from <table>;
+-- Converts the date column to match the format string. 
+```
+<br>
+
+11. Substraction on Date:
+DATE_SUB can be used to subject a specific unit time from the given date. 
+It can be used to check the date match in SQL
+Example: [game-play-analysis-iv](https://github.com/abhinavpannala/SQL-Practice/commit/ec3f2a2f3af0ce1f701953c2448327485dd3858e)
+Understand how the function can be used to optimize the query
+```
+SELECT DATE_SUB('2023-11-15', INTERVAL EXPRESSION UNIT) as datesub
+from <table>;
+-- Expression is the number
+-- Unit can be day, hour, month, year
+```
+
+
+****
+#### Insights:
+1. End values are inclusive in `BETWEEN <start_value> AND <end_value>`
