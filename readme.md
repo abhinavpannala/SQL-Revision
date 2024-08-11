@@ -154,4 +154,3 @@ from <table>;
 1. End values are inclusive in `BETWEEN <start_value> AND <end_value>`
 
 ![alt text](<SQL Syntax QR.jpeg>)
-Hello World
